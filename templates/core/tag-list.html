@@ -22,14 +22,17 @@
       </tr>
     </thead>
     <tbody>
+
       {% for tag in tag_list %}
-        <th>{{ tag.name }}</th>
-        <th>
-          <a href="{% url "core:update-tag" tag.id %}" class="btn btn-success">Update</a>
-        </th>
-        <th>
-          <a href="{% url "core:delete-tag" tag.id %}" class="btn btn-danger">Delete</a>
-        </th>
+        <tr>
+          <th>{{ tag.name }}</th>
+          <th>
+            <a href="{% url "core:update-tag" tag.id %}" class="btn btn-success">Update</a>
+          </th>
+          <th>
+            <a href="{% url "core:delete-tag" tag.id %}" class="btn btn-danger">Delete</a>
+          </th>
+        </tr>
       {% endfor %}
     </tbody>
   </table>
