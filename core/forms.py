@@ -23,7 +23,11 @@ class TaskForm(forms.ModelForm):
         if not deadline:
             return cleaned_date
         if deadline <= timezone.now():
-            raise forms.ValidationError({"deadline": "Deadline cannot be in the past"})
+            raise forms.ValidationError(
+                {
+                    "deadline": "Deadline cannot be in the past"
+                }
+            )
         return cleaned_date
 
 

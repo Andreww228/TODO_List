@@ -84,4 +84,3 @@ def change_task_status_view(request, pk):
         task.is_done = not task.is_done
         task.save()
     return redirect("/")
-
