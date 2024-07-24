@@ -9,9 +9,10 @@ from core.models import Task, Tag
 
 class HomePageView(generic.ListView):
     template_name = "core/task-list.html"
+    paginate_by = 10
 
     def get_queryset(self):
-        queryset = Task.objects.all()
+        queryset = Task.objects.prefetch_related().all()
 
         queryset = queryset.order_by("is_done").order_by("create_date")
         return queryset
@@ -38,6 +39,7 @@ class DeleteTaskView(generic.edit.DeleteView):
 class TagListView(generic.ListView):
     template_name = "core/tag-list.html"
     model = Tag
+    paginate_by = 10
 
 
 class CreateTagView(generic.CreateView):
