@@ -25,10 +25,10 @@
       {% for tag in tag_list %}
         <th>{{ tag.name }}</th>
         <th>
-          <a href="#" class="btn btn-success">Update</a>
+          <a href="{% url "core:update-tag" tag.id %}" class="btn btn-success">Update</a>
         </th>
         <th>
-          <a href="#" class="btn btn-danger">Delete</a>
+          <a href="{% url "core:delete-tag" tag.id %}" class="btn btn-danger">Delete</a>
         </th>
       {% endfor %}
     </tbody>

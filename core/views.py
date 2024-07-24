@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.views.generic import TemplateView
 
@@ -26,6 +27,24 @@ class CreateTagView(generic.CreateView):
     form_class = TagForm
     success_url = "/tags/"
     template_name = "core/tag-form.html"
+
+
+class UpdateTagView(generic.UpdateView):
+    model = Tag
+    form_class = TagForm
+    success_url = "/tags/"
+    template_name = "core/tag-form.html"
+
+
+class DeleteTagView(generic.DeleteView):
+    model = Tag
+    success_url = "/tags/"
+
+    def get(self, *args, **kwargs) -> HttpResponse:
+        tag = self.get_object()
+        if tag:
+            tag.delete()
+        return redirect(self.success_url)
 
 
 class CreateTaskView(generic.CreateView):
