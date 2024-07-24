@@ -1,0 +1,24 @@
+body {
+    margin: 20px;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.task-container > * {
+    align-self: center;
+}
+
+.task-container-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
