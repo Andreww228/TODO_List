@@ -1,7 +1,6 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views import generic
-from django.views.generic import TemplateView
 
 from core.forms import TaskForm, TagForm
 from core.models import Task, Tag
