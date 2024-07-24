@@ -31,35 +31,52 @@
           <h1>Todo list</h1>
           <a class="btn btn-primary" href="{% url "core:create-task" %}">Create task</a>
         </div>
+
         {% for task in task_list %}
-          <div class="d-flex justify-content-between">
-            <div class="d-flex gap-3 align-center">
-              <div class="">
-                <h3>
-                  <span>
-                    {{ task.content }}
-                  </span>
-                </h3>
-
+          <div class="task-container">
+            <div class="task-container-info">
+              <div class="horizontal-container">
+                <span>
+                  {{ task.content }}
+                </span>
               {% if task.is_done %}
-                <div style="align-self: center">
-                  <h4>
-                    <span style="color: green">
-                      Done
-                    </span>
-                  </h4>
-                </div>
+                <span style="color: green">
+                  Done
+                </span>
               {% else %}
-                <h4>
-                  <span style="color: red">
-                    Not Done
-                  </span>
-                </h4>
-
+                <span style="color: red">
+                  Not Done
+                </span>
               {% endif %}
+              </div>
+              <div class="">
+                <span>
+                  Created at: {{ task.create_date }}
+                </span>
+              </div>
+              <div class="">
+                <span>
+                  Deadline at: {{ task.deadline }}
+                </span>
+              </div>
+              <div class="horizontal-container">
+                <span>Tags:</span>
+                {% for tag in task.tags.all %}
+                  <span>
+                    {{ tag }}
+                  </span>
+                {% endfor %}
+                <a href="{% url "core:update-task" task.id%}">Update</a>
+                <a href="{% url "core:delete-task" task.id%}" >Delete</a>
+              </div>
             </div>
+            {% if task.is_done %}
+              <a href="{% url "core:update-task-status" task.id %}" class="btn btn-secondary">Undo</a>
+            {% else %}
+              <a href="{% url "core:update-task-status" task.id %}" class="btn btn-success">Complete</a>
+            {% endif %}
           </div>
-          </div>
+
           <hr>
         {% endfor %}
       {% endblock %}
